@@ -2,7 +2,7 @@
 " Git branch info
 " Last change: March 20 2010
 " Version> 0.1.5
-" Maintainer: Eustáquio 'TaQ' Rangel
+" Maintainer: Eustï¿½quio 'TaQ' Rangel
 " License: GPL
 " URL: git://github.com/taq/vim-git-branch-info.git
 "
@@ -108,8 +108,10 @@ endfunction
 function! GitBranchInfoTokens()
 	if !s:GitBranchInfoCheckGitDir()
 		let s:current = ''
+		exec "set grepprg=grep\\ -n\\ $*\\ /dev/null"
 		return [exists("g:git_branch_status_nogit") ? g:git_branch_status_nogit : "No git."]
 	endif
+	exec "set grepprg=git\\ grep\\ -n"
 	if !s:GitBranchInfoCheckReadable()
 		let s:current = ''
 		return [s:current,[],[]]
